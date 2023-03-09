@@ -1,10 +1,11 @@
-const http = require('http');
+const express = require('express');
+const server = require('http').createServer();
+const app = express();
 
-http.createServer(function(req,res){
-	res.write("This is the server");
-	res.end();
-}
-).listen(3000);
+app.get('/', function(req, res) {
+	res.send('hello from server')
+})
 
-console.log("server started on 3000");
+server.on('request', app)
+server.listen(3000, function() { console.log("server running 3000") })
 
